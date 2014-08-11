@@ -61,29 +61,39 @@
 					</aside>
 				</section>
 
-				<section id="fragments">
+				<section>
 					<h2>The Challenges</h2>
 					<ol>
-						<li class="fragment">~12,000 page on main site</li>
-						<li class="fragment">~metric buttload of documents (pdf,doc,f!!)</li>
-						<li class="fragment">~500 content contributors</li>
-						<li class="fragment">numerous external sites</li>
+						<li>~12,000 page on main site</li>
+						<li>~metric buttload of documents (pdf,doc,f!!)</li>
+						<li>~500 content contributors</li>
+						<li>numerous external sites</li>
 					</ol>
 				</section>
 				<section>
 					<h2 id="fragments">The Options</h2>
 					<ul>
-						<li class="fragment">Feeds Module</li>
-						<li class="fragment">Migrate Module</li>
-						<li class="fragment">Authors</li>
-						<li class="fragment">Army of trained monkeys</li>
+						<li>Feeds Module</li>
+						<li>Migrate Module</li>
+						<li>Authors</li>
+						<li>Army of trained monkeys</li>
 					</ul>
 				</section>
 				<section>
-					<h2>Migrate</h2>
+					<h2>The Solution: Migrate</h2>
 					<p>The Migrate module is a OO framework to enable complex migrations of content into Drupal.</p>
 					<p>It also has a fairly vertical learning curve.</p>
 				</section>
+				<section>
+				    <h2>Migrate Features</h2>
+				    <ul>
+				      <li>Repeatable imports</li>
+				      <li>Partial imports</li>
+				      <li>Migrate mapping</li>
+				      <li>Useful methods. i.e. PrepareRow and Prepare</li>
+				      <li>Highwater marks</li>
+				  </section>
+
 				<section>
 					<section>
 						<h2>Migrate Architecture</h2>
@@ -125,12 +135,14 @@
 						<p>Consists of a number of classes that handle most of the Drupal heavy lifting</p>
 					</section>
 				</section>
+
 				<section>
 				  <h2>The Approach</h2>
 				  <ul>
 				    <li>Pull data from Commonspot</li>
 				    <li>Maintain mostly the same content types</li>
 				    <li>1:1 field mappings.</li>
+				    <li>Migrate maintained relationships. i.e. authors, metadata
 				  </ul>
 				</section>
 				<section>
@@ -154,8 +166,8 @@
             <h2>Problems</h2>
             <ul>
               <li>Transfer problems with long text fields and non-standard characters</li>
-              <li>it takes a while to do all the steps</li>
-              <li>not even close to real-time</li>
+              <li>Takes a while to do all the steps</li>
+              <li>Not even close to real-time</li>
             </ul>
           </section>
 				</section>
@@ -180,13 +192,31 @@
         </section>
         
         <section>
-          <h2></h2>
+          <h2>The Outcome (thus far)</h2>
+          <ul>
+            <li>Greatly reduced export time</li>
+            <li>Way fewer format issues feed is auto-escaped</li>
+            <li>near real-time import&mdash;When launch comes, less downtime on switch over</li>
+          </ul>
         </section>
-
 				</section>
-
+				<section>
+				  <h2>The Tale Continues</h2>
+				  <ul>
+				    <li>New nist.gov launches next year</li>
+				    <li>Hope to have minimal switchover time</li>
+				    <li>Wish us luck!</li>
+				  </ul>
+				</section>
+				<section>
+				  <h2>Thanks To...</h2>
+				  <ul>
+				    <li>Mike Ryan</li>
+				    <li>Moshe Weitzman</li>
+				    <li>Matt Mendonca</li>
+				  </ul>
+				</section>
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
