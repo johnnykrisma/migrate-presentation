@@ -1,41 +1,41 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 
-		<title>NIST.gov Migration Overview</title>
+	<title>NIST.gov Migration Overview</title>
 
-		<meta name="description" content="This is how we migrated NIST.gov to Drupal">
-		<meta name="author" content="John Venable">
+	<meta name="description" content="This is how we migrated NIST.gov to Drupal">
+	<meta name="author" content="John Venable">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
-		</script>
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+	if( window.location.search.match( /print-pdf/gi ) ) {
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = 'css/print/pdf.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	}
+	</script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
 
-	<body>
+<body>
 
 		<div class="reveal">
 			<!-- Any section element inside of this container is displayed as a slide -->
@@ -49,21 +49,26 @@
   					</p>
   				</section>
   				<!-- venable bio -->
-          <section id="fragment">
-            <h2>Notable Fact About Venable</h2>
-            <p class="fragment">
-              I'm slightly taller than Dries&hellip;<br>
-              <img src="images/tall.jpg">
-            </p>
-          </section>
-          <!-- allen bio -->
-           <section id="fragment">
-            <h2>About Allen</h2>
-            <ul>
-              <li class="fragment">Progammer's programmer</li>
-              <li class="fragment">Totally insane</li>
-            </ul>
-          </section>
+		          <section id="fragment">
+		            <h2>Notable Fact About Venable</h2>
+		            <p class="fragment">
+		              I'm slightly taller than Dries&hellip;<br>
+		              <img src="images/tall.jpg">
+		            </p>
+		          </section>
+		          <!-- allen bio -->
+		           <section id="fragment">
+		            <h2>About Allen</h2>
+		            <ul>
+		              <li class="fragment">Programmer's programmer
+		              <ul>
+  		              <li>(Ask him about camelCase)</li>
+		              </ul></li>
+		              <li class="fragment">Spells poorly</li>
+		              <li class="fragment">Love cats</li>
+		              <li class="fragment">Totally insane</li>
+		            </ul>
+		          </section>
 			  </section>
 			  <!-- back up -->
 				<section>
@@ -97,6 +102,7 @@
 				</section>
 				
 				<section>
+				<section>
 					<h2>The Solution: Migrate</h2>
 					<p>The Migrate module is a OO framework to enable complex migrations of content into Drupal.</p>
 					<p>It also has a fairly vertical learning curve.</p>
@@ -108,10 +114,16 @@
 				      <li>Repeatable imports</li>
 				      <li>Partial imports</li>
 				      <li>Migrate mapping</li>
-				      <li>Useful methods. i.e. PrepareRow and Prepare</li>
+				      <li>Useful methods
+				        <ul>
+  				        <li>PrepareRow()</li>
+  				        <li>Prepare()</li>
+  				        <li>Complete()</li>
+				        </ul>
+				      </li>
 				      <li>Highwater marks</li>
 				  </section>
-
+</section>
 				<section>
 					<section>
 						<h2>Migrate Architecture</h2>
@@ -161,7 +173,7 @@
 						<p>Handles mapping source fields to Drupal field types. Nearly all field types supported.</p>
 					</section>
 				</section>
-
+<section>
 				<section>
 				  <h2>The Approach</h2>
 				  <ul>
@@ -171,36 +183,11 @@
 				    <li>Migrate maintained relationships. i.e. authors, metadata
 				  </ul>
 				</section>
-				<section>
-				  <h2>The Problem</h2>
-				  <ul>
-				    <li>No direct access to our MSSQL DB</li>
-				    <li>Even developers have to go through Citrix</li>
-				    <li>Wat do?</li>
-				  </ul>
-				</section>
-				<section>
-  				<section>
-  				  <h2>The "Hack"</h2>
-  				  <ol>
-  				    <li>Export content as delimited file</li>
-  				    <li>Import that into MySQL</li>
-  				    <li>Run Migrate against that</li>
-  				  </ol>
-  				</section>
+
+				
           <section>
-            <h2>Problems</h2>
-            <ul>
-              <li>Transfer problems with long text fields and non-standard characters</li>
-              <li>Takes a while to do all the steps</li>
-              <li>Not even close to real-time</li>
-            </ul>
-          </section>
-				</section>
-				<section>
-          <section>
-            <h2>The Better Solution</h2>
-          <p>We are presently converting to a JSON feed of 90% of content.</p>
+            <h2>The  Solution</h2>
+          <p>We wrote JSON feeds for ~95% of our Commonspot content.</p>
 <pre><code data-trim contenteditable>{
   "changed": "2014-08-08 18:20:14",
   "created": "2008-10-29 17:17:11",
@@ -227,33 +214,200 @@
           </ul>
         </section>
         
-        
-        
-        <section>
-          <h2>The Results</h2>
-          <ul>
-            <li>Greatly reduced export time</li>
-            <li>Way fewer format issues feed is auto-escaped</li>
-            <li>Near real-time import&mdash;When launch comes, less downtime on switch over</li>
-          </ul>
-        </section>
 				</section>
+								<!-- jfa stuff -->
 				<section>
-				  <h2>The Tale Continues</h2>
+
+					<h1>The Tips</h1>
+					<ul>
+						<li>Broad Generalizations</li>
+						<li>Where To Put Code</li>
+						<li>Helpful Ideas</li>
+					</ul>
+				</section>
+
+				<section>
+
+					<section id="logging">
+						<h2>But First... Logging</h2>
+
+						<p class="fragment">
+							Make a wrapper function for drush_log() (it's nice for strings):
+<pre class="fragment"><code data-trim contenteditable>
+/**
+ * I drush_log stuff for debugging.
+ *
+ * @param $message
+ */
+public function drushLog($message) {
+  drush_log($message, $type = 'warning', $error = NULL);
+}
+</code></pre>
+						</p>
+
+						<p class="fragment">
+							I <strong><u>wish</u></strong> knew this when I started working with Migrate:
+
+<pre class="fragment"><code data-trim contenteditable>
+// for complex data types
+print_r($foo);
+</code></pre>
+							</p>
+					</section>
+				</section>
+
+				<section>
+
+		          	<section id="generalizations">
+			            <h2>Broad Generalizations</h2>
+						<ul>
+							<li class="fragment">You <strong><u>WILL</u></strong> do server side DOM manipulation.
+								<ul>
+									<li class="fragment">Try to get your source markup as generically cleaned as possible on the source side.
+										<ul>
+											<li class="fragment">Good idea for a 'separation of concerns'.</li>
+											<li class="fragment">You'll know what to expect on the PHP side when working with each script.</li>
+										</ul>
+									</li>
+									<li class="fragment">You will probably need to do some or <u>A HUGE AMOUNT</u> of DOM manipulation on the PHP side.
+										<ul>
+											<li class="fragment">Use DOMDocument. It's the fastest.</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="fragment">You will be asked for lots of legit changes.
+
+								<ul>
+									<li class="fragment">Get super pumped for that.</li>
+									<li class="fragment">... cause it's not over till it's over.</li>
+								</ul>
+							</li>
+						</ul>
+			        </section>
+				</section>
+
+				<section id="whereToPutCode">
+
+					<h2>Where To Put Code</h2>
+					<ul>
+						<li class="fragment">The abstract base class that extends Migration will become the 'dumping ground'.
+							<ul>
+								<li class="fragment">We felt ZERO 'pain points' or 'friction' doing this.</li>
+							</ul>
+						</li>
+						<li class="fragment">Keep the individual migrate scripts as simple as possible.
+							<ul>
+								<li class="fragment">Try to limit them to the field mappings if possible.
+									<ul>
+										<li class="fragment">This wont be 100% achievable but is a good goal.</li>
+										<li class="fragment">Buy following this principal the 'one off' migrate script specific code is in that script only. Keeps us DRY.</li>
+									</ul>
+								</li>
+								<li class="fragment">Use&nbsp;&nbsp;<code>prepare()</code>, &nbsp;&nbsp;<code>prepareRow()</code>, and &nbsp;&nbsp;<code>complete()</code> to make calls to your base class.</li>
+								<li class="fragment">We found: if you use it in one script you will probably need it in another so code that way and keep it DRY.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section id="helpfulIdeas">
+
+						<h2>Helpful Ideas</h2>
+						<ul>
+							<li class="fragment">Try to migrate JSON.</li>
+							<li class="fragment">
+								Try to use the&nbsp;&nbsp;<code>MigrateSourceList</code>&nbsp;&nbsp;strategy.
+								<pre class="fragment"><code data-trim contenteditable>
+
+// create a date that is 2 days older than now
+$fromdate = $this->getFromDate(2); /* in the abstract dumping ground class */
+$type = 'page';
+
+$list_url = "http://gov-site.gov/listid.php?fromdate={$fromdate}&type={$type}";
+$item_url = "http://gov-site.gov/getitem.php?type={$type}&itemid=:id";
+
+$this->source = new MigrateSourceList(
+  new MigrateListJSON($list_url),
+  new MigrateItemJSON($item_url, array()),
+  $fields
+);
+</code></pre>
+							<ul>
+								<li class="fragment">VERY helpful for debugging.</li>
+								<li class="fragment">The list retrieval is the only 'taxing' thing on the source server.</li>
+								<li class="fragment">The individual item gets are smaller.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section id="moreHelpfulIdeas">
+					<h2>Helpful Ideas</h2>
+					<ul>
+						<li class="fragment">Add code that can force the High Water Mark to be in the future so you can FORCE a migration.</li>
+						<li class="fragment">Add redirects for nodes in the scripts <code>&nbsp;complete()&nbsp;</code> method which then call your abstract base class. Migrate will just report an error if you try to over write it in the future. No biggie.</li>
+						<li class="fragment">Create a generic <code>&nbsp;processContent()&nbsp;</code> method in your abstract class so you can do things like:
+							<ul>
+								<li class="fragment">Use DOMDocument to loop over any and all content to replace old URL with new proper URLs.</li>
+								<li class="fragment">Change things like your old CMSs <code>&nbsp;TABLE 2 ROWS IMAGE AND CAPTION&nbsp;</code> markup to Media Tokens or proper HTML figures.</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section id="moreHelpfulIdeas2">
+					<h2>Helpful Ideas</h2>
+					<ul>
+						<li class="fragment">Migrate drops node objects and creates new ones with migrated data. So if the node already has information added by an author and you need to keep it use the <code>&nbsp;prepare()&nbsp; method.</code>
+<pre class="fragment"><code data-trim contenteditable>
+public function prepare( $node, stdClass $row ) {
+
+  // get the current persisted object so we can inspect it and check stuff.
+  $currentNode = node_load($node->nid);
+
+  // we don't want to over write a nodes fooTaxonomy so see if the persisted
+  // object has one. if it does set the new objects to the olds...
+  if (isset($currentNode->foo_taxonomy['und'][0]['target_id'])) {
+    $currentFooTaxonomyTID = $currentNode->foo_taxonomy['und'][0]['target_id'];
+    $node->foo_taxonomy['und'][0]['target_id'] = $currentSectionTID;
+  }
+}
+</code></pre>
+						</li>
+						<li class="fragment">There are caveats to this. Google 'Drupal Migrate SystemOfRecord'.</li>
+					</ul>
+				</section>
+
+				<section>
+				  <h2>The Is Near</h2>
 				  <ul>
-				    <li>New nist.gov launches August 17</li>
-				    <li>Switchover time will be next to none. DNS switch and one last migrate for each content type.</li>
+  				  <li>www.nist.gov in public beta right now</li>
+				    <li>Final launch on August 17</li>
+				    <li>Switchover will be a DNS switch and one last migrate for each content type</li>
 				    <li>Wish us luck!</li>
 				  </ul>
 				</section>
+				
+				<section>
+				  <h2>Questions?</h2>
+				  <ul>
+				    <li>Anyone?</li>
+				    <li>Anyone?</li>
+				    <li>Beuller?</li>
+				  </ul>
+				  <br clear="all">
+				  <img src="images/ferris.jpg">
+				</section>
+
 				<section>
 				  <h2>Thanks To...</h2>
 				  <ul>
 				    <li>Mike Ryan</li>
 				    <li>Moshe Weitzman</li>
-				    <li>Matt Mendonca</li>
+				    <li>Matt Mendonca and the NIST team</li>
 				  </ul>
 				</section>
+	
 			</div>
 		</div>
 
