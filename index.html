@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 	<head>
 		<meta charset="utf-8">
 
 		<title>NIST.gov Migration Overview</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="This is how we migrated NIST.gov to Drupal">
+		<meta name="author" content="John Venable">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -39,35 +38,37 @@
 	<body>
 
 		<div class="reveal">
-
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 			  <section>
-				<section>
-					<h1>NIST.gov</h1>
-					<h3>Migrate Overview</h3>
-					<p>
-						<small>John Venable<br>@johnnykrisma</small>
-					</p>
-				</section>
-        <section id="fragment">
-          <h2>Notable Fact About Me</h2>
-          <p class="fragment">
-            I'm slightly taller than Dries...<br>
-            <img src="images/tall.jpg">
-          </p>
-        </section>
-
-
-
-
-
+  				<section><!-- TITLE slide -->
+  					<h1>Migrating<br>NIST.gov<br>to Drupal</h1>
+  					<p>
+  						<small>John Venable (@johnnykrisma)</small><br>
+  						<small>John Allen (@johnallen)</small>
+  					</p>
+  				</section>
+  				<!-- venable bio -->
+          <section id="fragment">
+            <h2>Notable Fact About Venable</h2>
+            <p class="fragment">
+              I'm slightly taller than Dries&hellip;<br>
+              <img src="images/tall.jpg">
+            </p>
+          </section>
+          <!-- allen bio -->
+           <section id="fragment">
+            <h2>About Allen</h2>
+            <ul>
+              <li class="fragment">Progammer's programmer</li>
+              <li class="fragment">Totally insane</li>
+            </ul>
+          </section>
 			  </section>
+			  <!-- back up -->
 				<section>
 					<h2>The Project</h2>
-					<p>
-						NIST is moving from proprietary Coldfusion CMS (Commonspot) to Drupal.
-					</p>
+					<p>Moving www.nist.gov from a proprietary Coldfusion CMS (Commonspot) to Drupal 7.</p>
 
 					<aside class="notes">
 						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
@@ -77,12 +78,14 @@
 				<section>
 					<h2>The Challenges</h2>
 					<ol>
-						<li>~12,000 page on main site</li>
-						<li>~metric buttload of documents (pdf,doc,f!!)</li>
-						<li>~500 content contributors</li>
-						<li>numerous external sites</li>
+						<li>15,000+ pages on main site</li>
+						<li>Metric buttload™ of documents (pdf,doc,f!!)</li>
+						<li>500+ content contributors</li>
+						<li>Multiple external sites</li>
+						<li>total of ~100,000 nodes</li>
 					</ol>
 				</section>
+				
 				<section>
 					<h2 id="fragments">The Options</h2>
 					<ul>
@@ -92,11 +95,13 @@
 						<li>Army of trained monkeys</li>
 					</ul>
 				</section>
+				
 				<section>
 					<h2>The Solution: Migrate</h2>
 					<p>The Migrate module is a OO framework to enable complex migrations of content into Drupal.</p>
 					<p>It also has a fairly vertical learning curve.</p>
 				</section>
+				
 				<section>
 				    <h2>Migrate Features</h2>
 				    <ul>
@@ -121,7 +126,7 @@
 					</section>
 					<section>
 						<h2>Migration</h2>
-						<p>Main class that any user-defined classes will be based off of.</p>
+						<p>Main class that any user-defined classes will extend.</p>
 					</section>
 					<section>
 						<h2>MigrateSource</h2>
@@ -131,6 +136,7 @@
 							<li>SQL Query</li>
 							<li>XML</li>
 							<li>JSON</li>
+							<li>Excel?!?!</li>
 							<li>Other DBs: Oracle/MSSQL</li>
 							<li>You can write custom sources</li>
 						</ul>
@@ -138,14 +144,21 @@
 					<section>
 						<h2>MigrateDestination</h2>
 						<p>Class which handles understanding various types of migration destinations within Drupal</p>
+						<h4>Destinations Include:</h4>
+						<ul>
+							<li>Nodes</li>
+							<li>Files</li>
+							<li>Users</li>
+							<li>Menus</li>
+						</ul>
 					</section>
 					<section>
 						<h2>MigrateMap</h2>
-						<p>Consists of a number of classes that handle most of the Drupal heavy lifting</p>
+						<p>The "Rosetta Stone" of translating and remembering source ID and where it maps in Drupal.</p>
 					</section>
 					<section>
 						<h2>MigrateFieldMapping</h2>
-						<p>Consists of a number of classes that handle most of the Drupal heavy lifting</p>
+						<p>Handles mapping source fields to Drupal field types. Nearly all field types supported.</p>
 					</section>
 				</section>
 
@@ -168,7 +181,7 @@
 				</section>
 				<section>
   				<section>
-  				  <h2>The Hack</h2>
+  				  <h2>The "Hack"</h2>
   				  <ol>
   				    <li>Export content as delimited file</li>
   				    <li>Import that into MySQL</li>
@@ -204,20 +217,32 @@
 }</code></pre>
         </section>
         
+        
         <section>
-          <h2>The Outcome (thus far)</h2>
+          <h2>Data massaging on Migrate</h2>
+          <ul>
+            <li>Replace tables with more appropriate markup</li>
+            <li>Insert users into Workbench permissions groups</li>
+            <li>Insert redirects</li>
+          </ul>
+        </section>
+        
+        
+        
+        <section>
+          <h2>The Results</h2>
           <ul>
             <li>Greatly reduced export time</li>
             <li>Way fewer format issues feed is auto-escaped</li>
-            <li>near real-time import&mdash;When launch comes, less downtime on switch over</li>
+            <li>Near real-time import&mdash;When launch comes, less downtime on switch over</li>
           </ul>
         </section>
 				</section>
 				<section>
 				  <h2>The Tale Continues</h2>
 				  <ul>
-				    <li>New nist.gov launches next year</li>
-				    <li>Hope to have minimal switchover time</li>
+				    <li>New nist.gov launches August 17</li>
+				    <li>Switchover time will be next to none. DNS switch and one last migrate for each content type.</li>
 				    <li>Wish us luck!</li>
 				  </ul>
 				</section>
