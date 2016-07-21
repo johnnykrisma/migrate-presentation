@@ -179,10 +179,25 @@
 					<section>
 						<h2>MigrateFieldMapping</h2>
 						<p>Handles mapping source fields to Drupal field types. Nearly all field types supported.</p>
+<pre><code>$this->addFieldMapping('body', 'abstract');
+$this->addFieldMapping('body:format')
+  ->defaultValue('publication_author_html');
+$this->addFieldMapping('title', 'title');
+$this->addFieldMapping('metatag_title', 'title');
+$this->addFieldMapping('changed', 'last_modified');
+$this->addFieldMapping('created', 'pubdate');
+$this->addFieldMapping('field_citation', 'citation');
+$this->addFieldMapping('field_conference_dates', 'conf_dates');
+$this->addFieldMapping('field_conference_location', 'conf_location');
+</code></pre>
 					</section>
 					<section>
   					<h2>High Water Mark</h2>
-  					<p>Last Updated date that Migrate will use to migrate only changed data</p>
+  					<p>Last Updated date that Migrate will use to migrate only changed data (deltas)</p>
+<pre><code>$this->highwaterField = array(
+  'name' => 'last_modified', // Column to be used as highwater mark
+  'alias' => 'f',
+);</code></pre>
 					</section>
 					<section>
   					 <h2>prepareRow($row)</h2>
