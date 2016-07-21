@@ -3,4 +3,4 @@ reveal.js presentation on migrating www.nist.gov from Commonspot to Drupal using
 
 ## Contact
 John Venable johnnykrisma@gmail.com
-johnnykrisma@gmail.com
+@johnnykrisma
