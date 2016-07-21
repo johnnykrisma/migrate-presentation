@@ -48,6 +48,14 @@
   						<small>John Allen (@johnallen)</small>
   					</p>
   				</section>
+  				<section>
+    				<h1>Slides</h1>
+    				<p>https://github.com/johnnykrisma/migrate-presentation</p>
+  				</section>
+  				<section>
+    				<h1>Codebase</h1>
+    				<p>https://github.com/johnnykrisma/nist-migrate-package</p>
+  				</section>           				
   				<!-- venable bio -->
 		          <section id="fragment">
 		            <h2>Notable Fact About Venable</h2>
@@ -172,6 +180,36 @@
 						<h2>MigrateFieldMapping</h2>
 						<p>Handles mapping source fields to Drupal field types. Nearly all field types supported.</p>
 					</section>
+					<section>
+  					<h2>High Water Mark</h2>
+  					<p>Last Updated date that Migrate will use to migrate only changed data</p>
+					</section>
+					<section>
+  					 <h2>prepareRow($row)</h2>
+  					 <p>This function is called by the source class' "next()" method, after loading a row of data.</p>
+  					 <ul>
+    					 <li>Looking up/translating values</li>
+    					 <li>Cleaning up code</li>
+    					 <li>
+    					 <li></li>
+  					 </ul>
+					</section>
+					<section>
+  					 <h2>prepare(stdClass $entity, stdClass $row)</h2>
+  					 <p>This function is called by the source class right before the destination object is saved.</p>
+					</section>
+					<section>
+  					 <h2>complete($entity, stdClass $row)</h2>
+  					 <p>called immediately after the complete destination object is saved. This may be used to do application-specific logging, or to update additional tables related to the object - it's mainly used when you need the Drupal ID of the newly-created object.</p>
+  					 <ul>
+    					 <li>great for adding redirects</li>
+    					 <li>We added content to workbench sections here</li>
+  					 </ul>
+					</section>
+					
+					
+					
+					
 				</section>
 <section>
 				<section>
